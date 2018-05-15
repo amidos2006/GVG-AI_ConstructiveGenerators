@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+        "outDir": "bin",
+        "outFile": "bin/app.js",
+        "sourceMap": true,
+        "declaration": true,
+        "target": "es2015",
+        "sourceRoot": "src"
+    }
+}
