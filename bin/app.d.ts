@@ -116,8 +116,8 @@ declare class Zelda {
     private getAllSeparatorWalls(map);
     private distance(p1, p2);
     getDifficultyParameters(diff: number, maxWidth: number, maxHeight: number): number[];
-    adjustParameters(width: number, height: number, openess: number, enemies: number): number[];
-    generate(width: number, height: number, openess: number, enemies: number): string;
+    adjustParameters(width: number, height: number, openess: number, enemies: number, distanceToGoal: number): number[];
+    generate(width: number, height: number, openess: number, enemies: number, distanceToGoal: number): string;
 }
 declare class Region {
     x: number;

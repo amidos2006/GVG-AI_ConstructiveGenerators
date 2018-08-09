@@ -42,7 +42,7 @@ let parameterSize: any = {
     "boulderdash": 5,
     "cookmepasta": 2,
     "waitforbreakfast": 1,
-    "zelda": 2,
+    "zelda": 3,
     "zenpuzzle": 2,
     "frogs": 5
 }

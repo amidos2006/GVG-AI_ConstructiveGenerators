@@ -47,21 +47,27 @@ class Zelda{
     }
 
     getDifficultyParameters(diff:number, maxWidth:number, maxHeight:number):number[]{
-        let width: number = Math.floor(diff * Math.max(maxWidth - 6, 0) + 2 * Math.random()) + 4;
-        let height: number = Math.floor(diff * Math.max(maxHeight - 6, 0) + 2 * Math.random()) + 4;
-        let openess:number = (1 - diff) * 0.4 + 0.1 * Math.random();
-        let enemies:number = diff * 0.5 + 0.1 * Math.random() + 0.4;
-        return [width, height, openess, enemies];
+        // let width: number = Math.floor(diff * Math.max(maxWidth - 6, 0) + 2 * Math.random()) + 4;
+        let width: number = maxWidth;
+        // let height: number = Math.floor(diff * Math.max(maxHeight - 6, 0) + 2 * Math.random()) + 4;
+        let height:number = maxHeight;
+        // let openess:number = (1 - diff) * 0.4 + 0.1 * Math.random();
+        let openess:number = (1 - diff) * 0.3 + 0.1 * Math.random() + 0.1;
+        // let enemies:number = diff * 0.5 + 0.1 * Math.random() + 0.4;
+        let enemies:number = diff * 0.4 + 0.2 * Math.random();
+        let distanceToGoal:number = diff * 0.7 + 0.3 * Math.random();
+        return [width, height, openess, enemies, distanceToGoal];
     }
 
-    adjustParameters(width: number, height: number, openess: number, enemies: number): number[]{
-        let parameters:number[] = [openess, enemies];
+    adjustParameters(width: number, height: number, openess: number, enemies: number, distanceToGoal:number): number[]{
+        let parameters:number[] = [openess, enemies, distanceToGoal];
         parameters[0] = Math.floor(openess * (width-1) * (height-1));
         parameters[1] = Math.floor(enemies * 0.05 * width * height);
+        parameters[2] = distanceToGoal + 1;
         return [Math.max(width, 4), Math.max(height, 4)].concat(parameters);
     }
 
-    generate(width:number, height:number, openess:number, enemies:number):string{
+    generate(width:number, height:number, openess:number, enemies:number, distanceToGoal:number):string{
         let map:number[][] = this._maze.generate(Math.floor(width/2), Math.floor(height/2));
         let walls: any[] = this.getAllSeparatorWalls(map);
         walls.sort((a,b)=>{return Math.random()-0.5});
@@ -76,11 +82,11 @@ class Zelda{
         locations.sort((a,b)=>{return Math.random()-0.5});
         let avatar:any = locations.splice(0, 1)[0];
         map[avatar.y][avatar.x] = 2;
-        locations.sort((a, b) => { return this.distance(avatar, b) - this.distance(avatar, a) + 
+        locations.sort((a, b) => { return this.distance(avatar, b) - distanceToGoal * this.distance(avatar, a) + 
             Math.min(width,height) * (2 * Math.random() - 1)})
         let exit:any = locations.splice(0, 1)[0];
         map[exit.y][exit.x] = 3;
-        locations.sort((a, b) => { return this.distance(avatar, b) - this.distance(avatar, a) +
+        locations.sort((a, b) => { return this.distance(avatar, b) - distanceToGoal * this.distance(avatar, a) +
             this.distance(exit, b) - this.distance(exit, a) +
             Math.min(width, height) * (2 * Math.random() - 1)});
         let key:any = locations.splice(0, 1)[0];
