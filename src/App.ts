@@ -4,6 +4,7 @@
 /// <reference path="Games/Zelda.ts"/>
 /// <reference path="Games/CookMePasta.ts"/>
 /// <reference path="Games/Frogs.ts"/>
+/// <reference path="Games/Solarfox.ts"/>
 
 let generators:any = {
     "boulderdash": new Boulderdash(new CellularAutomata(5, 4, -1), new AStar([0, 2]), {
@@ -35,6 +36,10 @@ let generators:any = {
         [Frogs.GRASS]: "+", [Frogs.STREET]: ".", [Frogs.WATER]: "0", [Frogs.LOG]: "=", [Frogs.AVATAR]: "A",
         [Frogs.TRUCK_LEFT]: "_", [Frogs.FAST_LEFT]: "l", [Frogs.TRUCK_RIGHT]: "-", [Frogs.FAST_RIGHT]: "x",
         [Frogs.WALL]: "w", [Frogs.SPAWNER_FAST]: "1", [Frogs.SPAWNER_SLOW]: "3", [Frogs.GOAL]: "g"
+    }),
+    "solarfox": new Solarfox({
+        [Solarfox.EMPTY]: "+", [Solarfox.EMPTY_BORDER]: ".", [Solarfox.TOP_ENEMY]: "2", [Solarfox.BOT_ENEMY]: "1",
+        [Solarfox.PILL]: "b", [Solarfox.POWER_PILL]: "p", [Solarfox.PLAYER]: "A", [Solarfox.WALL]: "w"
     })
 }
 
@@ -44,7 +49,8 @@ let parameterSize: any = {
     "waitforbreakfast": 1,
     "zelda": 3,
     "zenpuzzle": 2,
-    "frogs": 5
+    "frogs": 5,
+    "solarfox": 4
 }
 
 let paddingChars:any = {
@@ -53,7 +59,8 @@ let paddingChars:any = {
     "waitforbreakfast": 'w',
     "zelda": 'w',
     "zenpuzzle": '.',
-    "frogs": 'w'
+    "frogs": 'w',
+    "solarfox": 'w'
 }
 
 function padLevels(level: string, maxWidth: number, maxHeight: number, character:string): string{

@@ -1,8 +1,8 @@
 declare class AStar {
     private _empty;
     constructor(empty: number[]);
-    private insideMap(map, p);
-    private passable(map, p);
+    private insideMap;
+    private passable;
     pathExisits(map: number[][], start: any, end: any): boolean;
 }
 declare class WaitForBreakfast {
@@ -24,13 +24,13 @@ declare class WaitForBreakfast {
     private _aStar;
     private _charMap;
     constructor(aStar: AStar, charMap: any);
-    private getDistance(p1, p2);
-    private getRandomLocation(width, height);
-    private placeTable(map, start, end);
-    private removeTable(map, start, end);
-    private putTables(map, start, waiter, target, maxNumber);
-    private shuffleArray(array);
-    private placeChairs(map, table, index);
+    private getDistance;
+    private getRandomLocation;
+    private placeTable;
+    private removeTable;
+    private putTables;
+    private shuffleArray;
+    private placeChairs;
     getDifficultyParameters(diff: number, maxWidth: number, maxHeight: number): number[];
     adjustParameters(width: number, height: number, tableNumbers: number): number[];
     generate(roomWidth: number, roomHeight: number, tableNumbers: number): string;
@@ -43,9 +43,9 @@ declare class ZenPuzzle {
     private _hilbert2D;
     private _charMap;
     constructor(hilbert2D: any, charMap: any);
-    private sign(value);
-    private putZeroes(map, start, end);
-    private appendEmpty(rows, columns);
+    private sign;
+    private putZeroes;
+    private appendEmpty;
     getDifficultyParameters(diff: number, maxWidth: number, maxHeight: number): number[];
     adjustParameters(width: number, height: number, borderX?: number, borderY?: number): number[];
     generate(boardWidth: number, boardHeight: number, borderX?: number, borderY?: number): string;
@@ -55,14 +55,14 @@ declare class CellularAutomata {
     private _emptyFlipNum;
     private _tinySolidNum;
     constructor(solidFlipNum: number, emptyFlipNum: number, tinySolidNum: number);
-    private checkNumSolid(map, p, four?);
-    private getUnlabeledLocation(map);
-    private labelMap(map, start, label);
-    private getEmptyRegions(map);
-    private checkNumEmpty(map, p, four?);
-    private tinySolid(map);
-    private connect(map, p1, p2);
-    private clone(map);
+    private checkNumSolid;
+    private getUnlabeledLocation;
+    private labelMap;
+    private getEmptyRegions;
+    private checkNumEmpty;
+    private tinySolid;
+    private connect;
+    private clone;
     generate(width: number, height: number, solidPercentage: number, iterations: number): number[][];
 }
 declare class Boulderdash {
@@ -79,12 +79,12 @@ declare class Boulderdash {
     private _aStar;
     private _charMap;
     constructor(ca: CellularAutomata, aStar: AStar, charMap: any);
-    private getRandomEmptyPlace(map);
-    private getAllPossibleLocations(map);
-    private distance(p1, p2);
-    private reachable(map, start, locations);
-    private distanceToGems(loc, gems);
-    private assignEmptyArea(map, start, length, dir);
+    private getRandomEmptyPlace;
+    private getAllPossibleLocations;
+    private distance;
+    private reachable;
+    private distanceToGems;
+    private assignEmptyArea;
     getDifficultyParameters(diff: number, maxWidth: number, maxHeight: number): number[];
     adjustParameters(width: number, height: number, solidPercentage: number, smoothness: number, enemies: number, boulders: number, extraGems: number): number[];
     generate(width: number, height: number, solidPercentage: number, smoothness: number, enemies: number, boulders: number, extraGems: number): string;
@@ -112,9 +112,9 @@ declare class Zelda {
     private _maze;
     private _charMap;
     constructor(maze: Maze, charMap: any);
-    private getAllPossibleLocations(map);
-    private getAllSeparatorWalls(map);
-    private distance(p1, p2);
+    private getAllPossibleLocations;
+    private getAllSeparatorWalls;
+    private distance;
     getDifficultyParameters(diff: number, maxWidth: number, maxHeight: number): number[];
     adjustParameters(width: number, height: number, openess: number, enemies: number, distanceToGoal: number): number[];
     generate(width: number, height: number, openess: number, enemies: number, distanceToGoal: number): string;
@@ -134,9 +134,9 @@ declare class BSP {
     private _width;
     private _height;
     constructor(roomWidth: number, roomHeight: number);
-    private shuffleArray(array);
-    private sign(value);
-    private connect(map, p1, p2);
+    private shuffleArray;
+    private sign;
+    private connect;
     generate(width: number, height: number, rooms: number): number[][];
 }
 declare class CookMePasta {
@@ -153,10 +153,10 @@ declare class CookMePasta {
     private _aStar;
     private _charMap;
     constructor(bsp: BSP, aStar: AStar, charMap: any);
-    private getDistance(p1, p2);
-    private getAllPossibleLocations(map);
-    private getEnterHallways(map);
-    private checkNumEmpty(map, p);
+    private getDistance;
+    private getAllPossibleLocations;
+    private getEnterHallways;
+    private checkNumEmpty;
     getDifficultyParameters(diff: number, maxWidth: number, maxHeight: number): number[];
     adjustParameters(width: number, height: number, rooms: number, doors: number): number[];
     generate(width: number, height: number, rooms: number, doors: number): string;
@@ -179,9 +179,27 @@ declare class Frogs {
     constructor(charMap: any);
     getDifficultyParameters(diff: number, maxWidth: number, maxHeight: number): number[];
     adjustParameters(width: number, height: number, streetPercentage: number, waterPercentage: number, safetyPercentage: number, maxStreetSequence: number, maxWaterSequence: number): number[];
-    private getWallLine(width);
-    private getArray(width, base, added, num);
+    private getWallLine;
+    private getArray;
     generate(width: number, height: number, streetPercentage: number, waterPercentage: number, safetyPercentage: number, maxStreetSequence: number, maxWaterSequence: number): string;
+}
+declare class Solarfox {
+    static readonly TOP_ENEMY: string;
+    static readonly BOT_ENEMY: string;
+    static readonly PLAYER: string;
+    static readonly PILL: string;
+    static readonly POWER_PILL: string;
+    static readonly WALL: string;
+    static readonly EMPTY: string;
+    static readonly EMPTY_BORDER: string;
+    private _charMap;
+    constructor(charMap: any);
+    getDifficultyParameters(diff: number, maxWidth: number, maxHeight: number): number[];
+    adjustParameters(width: number, height: number, pillNumber: number, pillConcentrate: number, enemyStarting: number, enemyEnding: number): number[];
+    private getJewel;
+    private reflectHorizontal;
+    private reflectVertical;
+    generate(width: number, height: number, pillNumber: number, pillConcentrate: number, enemyStarting: number, enemyEnding: number): string;
 }
 declare let generators: any;
 declare let parameterSize: any;
